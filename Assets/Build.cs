@@ -19,7 +19,7 @@ public class Build : MonoBehaviour
         options.scenes = scenes.ToArray();
 
         // Å¸°Ù °æ·Î(ºôµå °á°ú¹°ÀÌ ¿©±â »ý¼ºµÊ)
-        string path = "C:\\UnityBuild\\SpaceWarship\\SpaceWarship.exe";
+        string path = "C:/Build/FirstPerson.exe";
         // ºôµå Å¸°Ù
         options.target = BuildTarget.StandaloneWindows;
 
