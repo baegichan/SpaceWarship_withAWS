@@ -21,6 +21,7 @@ public class Build : MonoBehaviour
         // Å¸°Ù °æ·Î(ºôµå °á°ú¹°ÀÌ ¿©±â »ý¼ºµÊ)
         string path = "C:/Build/FirstPerson.exe";
         // ºôµå Å¸°Ù
+        options.locationPathName = "Build/FirstPerson.exe";
         options.target = BuildTarget.StandaloneWindows;
 
         // ºôµå
