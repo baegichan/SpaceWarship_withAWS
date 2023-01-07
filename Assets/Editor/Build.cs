@@ -21,7 +21,7 @@ public class Build : MonoBehaviour
        
        
         // ºôµå Å¸°Ù
-        options.locationPathName = "C:/Build/SpaceWarship.exe";
+        options.locationPathName = "C:/ProgramData/Jenkins/.jenkins/workspace/UnityBuild/Build/SpaceWarship.exe";
         options.target = BuildTarget.StandaloneWindows;
 
         // ºôµå
