@@ -24,6 +24,6 @@ public class Build : MonoBehaviour
         options.target = BuildTarget.StandaloneWindows;
 
         // ºôµå
-        BuildPipeline.BuildPlayer(scenes.ToArray(), path, BuildTarget.StandaloneWindows64, BuildOptions.None);
+        BuildPipeline.BuildPlayer(options);
     }
 }
