@@ -3,8 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 using Photon;
+using System;
 public class Player : MonoBehaviour
 {
+    public static Player mainplayer;
+    public Action deadevnet;
     [SerializeField]
     float ShipSpeed;
     public Rigidbody rigid;
@@ -20,6 +23,8 @@ public class Player : MonoBehaviour
     public GameObject[] LightOBJ;
     public bool Light = false;
     int HP = 10000;
+
+    
     public int _HP
     {
         get 
@@ -30,8 +35,10 @@ public class Player : MonoBehaviour
             if (value <= 0)
             { 
                 HP = 0;
-                Destroy(gameObject);
+                deadevnet.Invoke();
                 SpawnManager.s_instance.DiePlayer();
+                PhotonNetwork.Destroy(gameObject);
+               
             }
             else{ HP = value; }
         }
@@ -41,7 +48,10 @@ public class Player : MonoBehaviour
     [PunRPC]
     public void Damaged(int damage)
     {
-        _HP -= damage;
+        
+       _HP = _HP - damage;
+      
+       
     }
     public enum State
     {
@@ -56,11 +66,12 @@ public class Player : MonoBehaviour
     {
        
     }
+  
     public void MovementShip()
     {
         if (PV.IsMine)
         {
-
+        /*
             if (Input.GetKeyDown(KeyCode.F))
             {
                 Light = Light == true ? false : true;
@@ -69,7 +80,7 @@ public class Player : MonoBehaviour
 
 
             }
-
+            */
             float X = Input.GetAxis("Horizontal");
             float Y = Input.GetAxis("Vertical");
 
@@ -256,6 +267,7 @@ public class Player : MonoBehaviour
     #endregion
     private void Start()
     {
+        
         Cursor.visible = false;
         CenterVec.x = Screen.width * 0.5f;
         CenterVec.y = Screen.height * 0.5f;
@@ -264,11 +276,14 @@ public class Player : MonoBehaviour
         {
             if (PV.IsMine)
             {
+                TargetManager.s_targetmanager.Update_MainplayerUI();
+                mainplayer = this;
                 _cameraWork.OnStartFollowing();
             }
         }
         else
         {
+            TargetManager.s_targetmanager.CreateTargetImg(gameObject);
             Debug.LogError("<Color=Red><a>Missing</a></Color> CameraWork Component on playerPrefab.", this);
         }
     }

@@ -24,6 +24,7 @@ public class Launcher : MonoBehaviourPunCallbacks
             Destroy(this.gameObject);
         }
         PhotonNetwork.AutomaticallySyncScene = true;
+        PhotonNetwork.NickName = PlayerData.s_playerdata.Get_playernickname();
         PhotonNetwork.ConnectUsingSettings();
 
     }

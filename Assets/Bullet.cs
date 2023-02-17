@@ -34,13 +34,15 @@ public class Bullet : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         //ºÎµúÈú¶§ µ¥¹ÌÁö
-        if(collision.gameObject.GetComponentInParent<Player>())
+        if(collision.gameObject.GetComponent<Player>())
         {
-            Player i_player = collision.gameObject.GetComponentInParent<Player>();
-            if(i_player.PV.IsMine==false)
+            Player i_player = collision.gameObject.GetComponent<Player>();
+            if(i_player.PV.IsMine==true)
             {
+                Debug.Log("damaged " + damage);
                 i_player.Damaged(damage);
                 Destroy(gameObject);
+               
             }
             
         }

@@ -51,8 +51,18 @@ public class SpawnManager : MonoBehaviourPunCallbacks
     }
     public void SpawnPlayer()
     {
-        if(PhotonNetwork.NickName!="MASTER")
-        PhotonNetwork.Instantiate("PLAYER", Vector3.zero, Quaternion.identity);
+        if (PhotonNetwork.NickName != "MASTER")
+        {
+            GameObject player =PhotonNetwork.Instantiate("PLAYER", Vector3.zero, Quaternion.identity);
+            if(player.GetComponent<Player>().PV.IsMine)
+            {
+            
+            }
+            else
+            {
+                TargetManager.s_targetmanager.CreateTargetImg(player);
+            }
+        }
     }
  
 }

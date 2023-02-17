@@ -97,6 +97,15 @@ public class CameraMove : MonoBehaviour
     #endregion
 
 
+    public PhotonView PV;
+    private void Awake()
+    {
+        if(PV.IsMine==false)
+        {
+            Destroy(this);
+        }
+    }
+
     #region Public Methods
 
 
